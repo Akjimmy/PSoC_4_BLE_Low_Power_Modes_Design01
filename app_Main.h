@@ -24,9 +24,6 @@
     
 /*************************Pre-processor directives****************************/
     
-// 'ENABLE_APP_WATCHDIG_INT' pre-processor directive enables the watchdog to raise an interrupt    
-//To disable, comment the following #define.
-#define    ENABLE_APP_WATCHDIG_INT  //
      
 /****************************************************************************/      
    
