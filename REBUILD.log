@@ -1,4 +1,4 @@
---------------- Rebuild Started: 08/14/2020 16:34:37 Project: Design01, Configuration: ARM GCC 5.4-2016-q2-update Debug ---------------
+--------------- Rebuild Started: 08/15/2020 09:09:38 Project: Design01, Configuration: ARM GCC 5.4-2016-q2-update Debug ---------------
 Deleting file ".\CortexM0\ARM_GCC_541\Debug\app_Main.o"
 Deleting file ".\CortexM0\ARM_GCC_541\Debug\app_BLE.o"
 Deleting file ".\CortexM0\ARM_GCC_541\Debug\app_ISR.o"
@@ -130,4 +130,4 @@ Checksum calculated and stored in ELF section .cymeta
 cyelftool.exe -S E:\Day041_PSoC_4_BLE_Low_Power_Modes-20200709\PSoC_4_BLE_LowPowerModes\Design01.cydsn\CortexM0\ARM_GCC_541\Debug\Design01.elf
 Flash used: 5591 of 262144 bytes (2.1%).
 SRAM used: 5368 of 32768 bytes (16.4%). Stack: 2048 bytes. Heap: 128 bytes.
---------------- Rebuild Succeeded: 08/14/2020 16:34:54 ---------------
+--------------- Rebuild Succeeded: 08/15/2020 09:10:02 ---------------

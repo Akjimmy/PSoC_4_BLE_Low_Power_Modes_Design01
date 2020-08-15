@@ -11,6 +11,8 @@
 */
 #include "app_Main.h"
 
+#define _WDT_LED_INDICATE_  // enable toggle LED for WDT ISR
+
 /*******************************************************************************
 * Function Name: WDT_INT_Handler
 ********************************************************************************
@@ -155,8 +157,10 @@ void wdt0InterruptCallback(void)
         // place application code here
         
         //#############################
+        #ifdef _WDT_LED_INDICATE_
         PinLedRed_SetDriveMode(PinLedRed_DM_STRONG);
-        PinLedRed_Write(~PinLedRed_Read());     
+        PinLedRed_Write(~PinLedRed_Read());
+        #endif
         //#############################
         
         //******************************************************
@@ -210,10 +214,12 @@ void wdt2InterruptCallback(void)
         //******************************************************
         // place application code here
         
-        //#############################  
+        //#############################
+        
+        #ifdef _WDT_LED_INDICATE_
         PinLedBlue_SetDriveMode(PinLedBlue_DM_STRONG);
         PinLedBlue_Write(~PinLedBlue_Read());
-        
+        #endif
         //PinAppState_Write(~PinAppState_Read());
        
         //#############################

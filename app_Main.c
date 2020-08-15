@@ -208,8 +208,11 @@ int main(void)
     
     for(;;)
     {
+        // ************************************************
+        // select which watchdog to be enabled
         CySysWdtEnable(CY_SYS_WDT_COUNTER0_MASK);
         //CySysWdtEnable(CY_SYS_WDT_COUNTER2_MASK);
+        // ************************************************
         
         PinAppState_Write(0);//### Jimmy. Obseve the deepsleep state
         
@@ -219,7 +222,7 @@ int main(void)
             
         PinAppState_Write(1);//### Jimmy
         
-        CyDelayUs(WATCHDOG_REG_UPDATE_WAIT_TIME);
+        CyDelayUs(WATCHDOG_REG_UPDATE_WAIT_TIME); // pseudo code
     }
     
     //************************************************************************    
