@@ -71,10 +71,12 @@ void HandleLowPowerMode(uint8 byLpm)
     		        CySysPmDeepSleep();
                     
                     PinAppState_Write(1);//### Jimmy
+                                       
                     //************************************************************************
                     
                     //************************************************************************
                     /* Disable Watchdog to prevent Watchdog waking system */
+                    /*
                     #ifdef ENABLE_APP_WATCHDIG_INT
                         CyIntDisable(WATCHDOG_INT_VEC_NUM);
                         if(CySysWdtGetEnabledStatus(CY_SYS_WDT_COUNTER2))
@@ -88,6 +90,7 @@ void HandleLowPowerMode(uint8 byLpm)
                             CySysWdtDisable(CY_SYS_WDT_COUNTER0_MASK);    
                         }
                     #endif
+                    */
                     //************************************************************************
                     
                     //************************************************************************ 

@@ -98,34 +98,11 @@ int main(void)
     //byAppPM = ACTIVE;
     //byAppPM = SLEEP;
     byAppPM = DEEPSLEEP;// default 
-    
-    //*****************************************
-    // Initialize pin state
-    PinLedRed_Write(LED_OFF);
-    PinLedGreen_Write(LED_OFF);
-    PinLedBlue_Write(LED_OFF);
-    
-    PinAppState_Write(1);
-    
-	PinLedRed_SetDriveMode(PinLedRed_DM_ALG_HIZ);
-	PinLedGreen_SetDriveMode(PinLedGreen_DM_ALG_HIZ);
-	PinLedBlue_SetDriveMode(PinLedBlue_DM_ALG_HIZ);
-       
-    //###################################
-    PinLedBlue_SetDriveMode(PinLedBlue_DM_STRONG);
-    PinLedBlue_Write(LED_ON);
-    CyDelay(500);
-    PinLedBlue_Write(LED_OFF);
-    
-    PinLedRed_SetDriveMode(PinLedRed_DM_STRONG);
-    PinLedRed_Write(LED_ON);
-    CyDelay(500);
-    PinLedRed_Write(LED_OFF);
-    //###################################
+     //###################################
     
     //************************************************************************
     // Initialize Watchdog
-    #ifdef ENABLE_APP_WATCHDIG_INT  //#define in main.h
+    #ifdef ENABLE_APP_WATCHDIG_INT  //#define in app_WatchDog.h
     // WDT0,WDT2 configurate and enable  on the clocks tab of the design wide resources (DWR)
     // WDT0 : 1sec for wakeup system then disabled
     // WDT2 : enable after ADV STOP or disconnected. 30sec timeout to wakeup form deepsleep
@@ -133,9 +110,9 @@ int main(void)
     //uint32 uiWdtMode;
     //uint32 uiWdtClearOnMatchStatus;
     //uint32 uiWdt0MatchValue; 
-    uint32 uiWDTcount;
+    //uint32 uiWDTcount;
     //uint8  byIntPriority; 
-    uint32  uiWdt2ToggleBit;  
+    //uint32  uiWdt2ToggleBit;  
         
     /* Unlock the WDT registers for modification */
 	CySysWdtUnlock(); 
@@ -173,64 +150,103 @@ int main(void)
 	    //CyIntSetPriority(WATCHDOG_INT_VEC_NUM, 0);
     
         /* Set the Watchdog Interrupt vector to the address of Interrupt routine WDT_INT_Handler. */
-	    cyWdtCallback   aa;
+	    //cyWdtCallback   aa;
        // CySysWdtDisableCounterIsr(CY_SYS_WDT_COUNTER0);
        //     do{
-                aa=CySysWdtSetInterruptCallback(CY_SYS_WDT_COUNTER0,wdt0InterruptCallback);
+                CySysWdtSetInterruptCallback(CY_SYS_WDT_COUNTER0,wdt0InterruptCallback);
        //     }while(aa==0);
        // CySysWdtEnableCounterIsr(CY_SYS_WDT_COUNTER0);
     
        // CySysWdtDisableCounterIsr(CY_SYS_WDT_COUNTER2);
        //     do{
-                aa=CySysWdtSetInterruptCallback(CY_SYS_WDT_COUNTER2,wdt2InterruptCallback);
+                CySysWdtSetInterruptCallback(CY_SYS_WDT_COUNTER2,wdt2InterruptCallback);
        //     }while(aa==0);
        // CySysWdtEnableCounterIsr(CY_SYS_WDT_COUNTER2);
     
     CySysWdtUnlock();
     
-    /* Enable Watchdog Counter 0 */
-	//CySysWdtEnable(CY_SYS_WDT_COUNTER0_MASK);
+    // Enable Watchdog Counter 0
+	CySysWdtEnable(CY_SYS_WDT_COUNTER0_MASK);
     //CySysWdtEnable(CY_SYS_WDT_COUNTER2_MASK);
+    
     #endif
     
     //************************************************************************
     
+    //*****************************************
+    // Initialize pin state
+    PinLedRed_Write(LED_OFF);
+    PinLedGreen_Write(LED_OFF);
+    PinLedBlue_Write(LED_OFF);
+        
+	//PinLedRed_SetDriveMode(PinLedRed_DM_ALG_HIZ);
+	//PinLedGreen_SetDriveMode(PinLedGreen_DM_ALG_HIZ);
+	//PinLedBlue_SetDriveMode(PinLedBlue_DM_ALG_HIZ);
+    //*****************************************
+    
+    //###################################
+    // indicate Power On
+    PinLedRed_SetDriveMode(PinLedRed_DM_RES_DWN);
+    PinLedRed_Write(LED_ON);
+    CyDelay(500);
+    PinLedRed_Write(LED_OFF);
+    
+    PinLedBlue_SetDriveMode(PinLedRed_DM_RES_DWN);
+    PinLedBlue_Write(LED_ON);
+    CyDelay(500);
+    PinLedBlue_Write(LED_OFF);
+  
+    //PinLedBlue_Write(0);//PinLedBlue_Write(LED_OFF);
+    
+    //###################################
+    //*****************************************
     
     //************************************************************************
     // Enable global interrupts //CyGlobalIntDisable;// Power ON default
     
     CyGlobalIntEnable;
-        
-    /* Place your initialization/startup code here (e.g. MyInst_Start()) */
-    //CyBle_Start( bleStackEventHandler );// start BLESS
-  
 	isr_SW2_StartEx(SW2_ISR);//* Start the Button ISR to allow wakeup from low power mode sleep
+    isr_Pin0_5_StartEx(Pin0_5_ISR);
     
+    //###########################################
+    // if use below for(;;) Loop to test watchdog,un-remark #define __TEST_WATCHDOG__
+    
+    #ifdef __TEST_WATCHDOG__
     for(;;)
     {
-        // ************************************************
-        // select which watchdog to be enabled
-        CySysWdtEnable(CY_SYS_WDT_COUNTER0_MASK);
-        //CySysWdtEnable(CY_SYS_WDT_COUNTER2_MASK);
-        // ************************************************
+       // ************************************************
         
-        PinAppState_Write(0);//### Jimmy. Obseve the deepsleep state
+        //PinAppState_Write(0);//### Jimmy. Obseve the deepsleep state
         
         CyGlobalIntDisable;
             CySysPmDeepSleep(); // Put the chip into deep sleep.
         CyGlobalIntEnable;// allow pendding interrupt to run ISR
             
-        PinAppState_Write(1);//### Jimmy
+        //PinAppState_Write(1);//### Jimmy
         
         CyDelayUs(WATCHDOG_REG_UPDATE_WAIT_TIME); // pseudo code
     }
-    
+    #endif
+    //###########################################
     //************************************************************************    
+    
+    /* Place your initialization/startup code here (e.g. MyInst_Start()) */
+    CyBle_Start( bleStackEventHandler );// start BLESS
+    
     for(;;)
     {
         
         /* Place your application code here */
         CyBle_ProcessEvents();
+        
+        if(restartAdvertisement)
+		{
+			// Reset 'restartAdvertisement' flag
+			restartAdvertisement = FALSE;
+
+			// Start Advertisement and enter Discoverable mode
+			CyBle_GappStartAdvertisement(CYBLE_ADVERTISING_FAST);	
+		}
         
         if(deviceConnected == TRUE )
 		{
@@ -257,7 +273,7 @@ int main(void)
 			HandleLowPowerMode(byAppPM);
             
 		#endif
-        
+       /*
         if(restartAdvertisement)
 		{
 			// Reset 'restartAdvertisement' flag
@@ -266,6 +282,7 @@ int main(void)
 			// Start Advertisement and enter Discoverable mode
 			CyBle_GappStartAdvertisement(CYBLE_ADVERTISING_FAST);	
 		}
+       */
         
     }
 }

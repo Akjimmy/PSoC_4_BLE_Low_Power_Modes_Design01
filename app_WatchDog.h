@@ -31,8 +31,8 @@
 * for changes to take effect */
 #define WATCHDOG_REG_UPDATE_WAIT_TIME		100     //3 clock of 32768Hz is 91.552uS
     
-void WDT_INT_Handler(void);
-void InitializeWatchdog(uint32 counterNum);
+// void WDT_INT_Handler(void);
+// void InitializeWatchdog(uint32 counterNum);
 
 void wdt0InterruptCallback(void);
 void wdt2InterruptCallback(void);
@@ -40,8 +40,9 @@ void wdt2InterruptCallback(void);
 
 // 'ENABLE_APP_WATCHDIG_INT' pre-processor directive enables the watchdog to raise an interrupt    
 //To disable, comment the following #define.
-#define    ENABLE_APP_WATCHDIG_INT  //
-
+#define ENABLE_APP_WATCHDIG_INT  //
+#define _ENABLE_WATCHDOG_IN_ISR_
+#define __TEST_WATCHDOG__
     
 #endif
 /* [] END OF FILE */

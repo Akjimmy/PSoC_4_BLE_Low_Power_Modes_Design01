@@ -21,10 +21,13 @@
       <Data key="5fe22be6-a78b-4939-ad44-8e00c9f7ecd4" value="SW2" />
       <Data key="7ca9760e-6931-4b43-a74b-782f631c6518/5382e105-1382-4a2e-b9f4-3bb2feba71e0" value="SCB_2_sda" />
       <Data key="7ca9760e-6931-4b43-a74b-782f631c6518/22863ebe-a37b-476f-b252-6e49a8c00b12" value="SCB_2_scl" />
+      <Data key="8d318d8b-cf7b-4b6b-b02c-ab1c5c49d0ba" value="Pin2_5" />
       <Data key="3899b5dc-effb-43d8-8853-66d82e684bc9" value="PinLedBlue" />
       <Data key="8487fb09-5b9d-4ced-ba2e-f77c9d9c2b63" value="SW3" />
       <Data key="af4a956a-e0bb-4ff4-9acb-29bcaca982c6" value="PinAppState" />
+      <Data key="b10e6fd1-505a-4e34-b10a-e80c8dec3756" value="Pin2_0" />
       <Data key="bf10fafd-0b2b-433f-95d5-24cc426b237d" value="PinLedRed" />
+      <Data key="c6979566-f9a4-4e78-9b48-f8122bc8c30f" value="Pin2_0" />
       <Data key="d44d0fea-0085-48a1-82c3-354be77a6259" value="ADC_In" />
       <Data key="e851a3b9-efb8-48be-bbb8-b303b216c393" value="PinLedGreen" />
       <Data key="fb21df50-96b1-48f5-ae29-e79b1a3df784/23b8206d-1c77-4e61-be4a-b4037d5de5fc" value="SCB_1_tx" />
@@ -3621,6 +3624,11 @@
         <Data key="Port Format" value="1,0" />
       </Group>
     </Group>
+    <Group key="8d318d8b-cf7b-4b6b-b02c-ab1c5c49d0ba">
+      <Group key="0">
+        <Data key="Port Format" value="0,5" />
+      </Group>
+    </Group>
     <Group key="3899b5dc-effb-43d8-8853-66d82e684bc9">
       <Group key="0">
         <Data key="Port Format" value="3,7" />
@@ -3631,9 +3639,19 @@
         <Data key="Port Format" value="0,4" />
       </Group>
     </Group>
+    <Group key="b10e6fd1-505a-4e34-b10a-e80c8dec3756">
+      <Group key="0">
+        <Data key="Port Format" value="2,0" />
+      </Group>
+    </Group>
     <Group key="bf10fafd-0b2b-433f-95d5-24cc426b237d">
       <Group key="0">
         <Data key="Port Format" value="2,6" />
+      </Group>
+    </Group>
+    <Group key="c6979566-f9a4-4e78-9b48-f8122bc8c30f">
+      <Group key="0">
+        <Data key="Port Format" value="2,0" />
       </Group>
     </Group>
     <Group key="e851a3b9-efb8-48be-bbb8-b303b216c393">

@@ -108,10 +108,10 @@ void bleStackEventHandler( uint32 eventCode, void *eventParam )
 			{
 				// Set restartAdvertisement flag to allow calling Advertisement 
 				// API from main function ,then Sequential advertising could be started
-				restartAdvertisement = TRUE;
+				//restartAdvertisement = TRUE;
                  //#ifdef ENABLE_APP_WATCHDIG_INT
 	                //CySysWdtClearInterrupt(CY_SYS_WDT_COUNTER2_INT);
-                    //CySysWdtEnable(CY_SYS_WDT_COUNTER2_MASK);
+                    CySysWdtEnable(CY_SYS_WDT_COUNTER2_MASK);
                  //#endif
 			}
             

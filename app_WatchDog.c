@@ -26,43 +26,45 @@
 *  void
 *
 *******************************************************************************/
+/*
 void WDT_INT_Handler(void)
 {
     //-------------------------------------
-    /* If the Interrupt source is Counter 0 match, then process */
+    // If the Interrupt source is Counter 0 match, then process
 	if(CySysWdtGetInterruptSource() & CY_SYS_WDT_COUNTER0_INT)
 	{
-        /* Clear Watchdog Interrupt from Counter 0 */
+        // Clear Watchdog Interrupt from Counter 0
 		CySysWdtClearInterrupt(CY_SYS_WDT_COUNTER0_INT);
         
-        //******************************************************
+        // ******************************************************
         // place application code here
         
-        //******************************************************
+        // ******************************************************
         
-        /* Unlock the WDT registers for modification */
+        //Unlock the WDT registers for modification
 		CySysWdtUnlock();
 		
-		/* Disable Counter 0 to allow modifications */
+		//Disable Counter 0 to allow modifications
 		CySysWdtDisable(CY_SYS_WDT_COUNTER0_MASK);
 		
-		/* Reset Counter 0 and give ~3 LFCLK cycles to take effect */
+		//Reset Counter 0 and give ~3 LFCLK cycles to take effect 
 		CySysWdtResetCounters(CY_SYS_WDT_COUNTER0_RESET);
 		CyDelayUs(WATCHDOG_REG_UPDATE_WAIT_TIME);
         
 		
-		/* Write the Counter 0 match value for 1 second and give ~3 LFCLK
-		* cycles to take effect */
+		//Write the Counter 0 match value for 1 second and give ~3 LFCLK
+		// cycles to take effect
 		CySysWdtWriteMatch(CY_SYS_WDT_COUNTER0, WATCHDOG_ONE_SEC_COUNT_VAL);
 		CyDelayUs(WATCHDOG_REG_UPDATE_WAIT_TIME);
 		
-		/* Enable Watchdog Counter 0 */
+		// Enable Watchdog Counter 0
 		CySysWdtEnable(CY_SYS_WDT_COUNTER0_MASK);
 		
-		/* Lock Watchdog to prevent any further change */
+		// Lock Watchdog to prevent any further change 
 	    CySysWdtLock();    
     }
 }
+*/
 /*******************************************************************************
 * Function Name: InitializeWatchdog
 ********************************************************************************
@@ -85,42 +87,42 @@ void WDT_INT_Handler(void)
 */
 /* Disable Watchdog to prevent Watchdog waking system */
 // CyIntDisable(WATCHDOG_INT_VEC_NUM);
-
+/*
 void InitializeWatchdog(uint32 counterNum)
 {
-	/* Unlock the WDT registers for modification */
+	// Unlock the WDT registers for modification
 	CySysWdtUnlock(); 
 	    if(counterNum == CY_SYS_WDT_COUNTER0)
         {
-	        /* Write Mode for Counter 0 as Interrupt on Match */
+	        // Write Mode for Counter 0 as Interrupt on Match 
             CySysWdtWriteMode(CY_SYS_WDT_COUNTER0, CY_SYS_WDT_MODE_INT);
 	
-	        /* Set Clear on Match for Counter 0*/
+	        // Set Clear on Match for Counter 0
 	        CySysWdtWriteClearOnMatch(CY_SYS_WDT_COUNTER0, TRUE);
         
-            /* Write the match value equal to 1 second in Counter 0 */
+            // Write the match value equal to 1 second in Counter 0
 	        CySysWdtWriteMatch(CY_SYS_WDT_COUNTER0, WATCHDOG_ONE_SEC_COUNT_VAL);         
             
-	        /* Enable Counter 0 */
+	        // Enable Counter 0 
             CySysWdtEnable(CY_SYS_WDT_COUNTER0_MASK);
             
             
         }
-	    /* Set Watchdog interrupt to lower priority */
+	    // Set Watchdog interrupt to lower priority 
 	    CyIntSetPriority(WATCHDOG_INT_VEC_NUM, WATCHDOG_INT_VEC_PRIORITY);
         
-        /* Set the Watchdog Interrupt vector to the address of Interrupt routine 
-	    * WDT_INT_Handler. This routine counts the 3 seconds for LED ON state during
-	    * connection. */
+        // Set the Watchdog Interrupt vector to the address of Interrupt routine 
+	    // WDT_INT_Handler. This routine counts the 3 seconds for LED ON state during
+	    // connection.
 	    CyIntSetVector(WATCHDOG_INT_VEC_NUM, &WDT_INT_Handler);
 	
-	    /* Enable Watchdog Interrupt using Interrupt number */
+	    // Enable Watchdog Interrupt using Interrupt number
         CyIntEnable(WATCHDOG_INT_VEC_NUM);
 	
-	/* Lock Watchdog to prevent further changes */
+	// Lock Watchdog to prevent further changes
     CySysWdtLock();
 }
-
+*/
 /*******************************************************************************
 * Function Name: wdt0InterruptCallback
 ********************************************************************************
@@ -158,8 +160,8 @@ void wdt0InterruptCallback(void)
         
         //#############################
         #ifdef _WDT_LED_INDICATE_
-        PinLedRed_SetDriveMode(PinLedRed_DM_STRONG);
-        PinLedRed_Write(~PinLedRed_Read());
+            PinLedRed_SetDriveMode(PinLedRed_DM_RES_DWN);
+            PinLedRed_Write(~PinLedRed_Read());
         #endif
         //#############################
         
@@ -171,10 +173,9 @@ void wdt0InterruptCallback(void)
     	/* Disable Counter 0 to allow modifications */
     	CySysWdtDisable(CY_SYS_WDT_COUNTER0_MASK);
             
-    		// if CySysWdtSetClearOnMatch() is set true,WDTCount reset to zero when countervalue match
-            /* Reset Counter 0 and give ~3 LFCLK cycles to take effect */
+    		// if CySysWdtSetClearOnMatch() is set true,WDTCount reset to zero when countervalue match //
     		//CySysWdtResetCounters(CY_SYS_WDT_COUNTER0_RESET);
-    		//CyDelayUs(WATCHDOG_REG_UPDATE_WAIT_TIME);
+    		//CyDelayUs(WATCHDOG_REG_UPDATE_WAIT_TIME);// Reset Counter 0 and give ~3 LFCLK cycles to take effect
             //#############################
     		//uiWDTcount=CySysWdtGetCount (CY_SYS_WDT_COUNTER0);
             //#############################
@@ -185,11 +186,17 @@ void wdt0InterruptCallback(void)
     		//CyDelayUs(WATCHDOG_REG_UPDATE_WAIT_TIME);
           
     	/* Enable Watchdog Counter 0 */
-    	//CySysWdtEnable(CY_SYS_WDT_COUNTER0_MASK);
+        #ifdef _ENABLE_WATCHDOG_IN_ISR_
+    	CySysWdtEnable(CY_SYS_WDT_COUNTER0_MASK);
+        #endif
             
 		/* Lock Watchdog to prevent any further change */
 	    //CySysWdtLock(); 
-        //******************************************************     
+        //******************************************************  
+        
+        //#############################
+        PinAppState_Write(~PinAppState_Read());
+        //#############################
     }
 }
 void wdt2InterruptCallback(void)
@@ -217,7 +224,7 @@ void wdt2InterruptCallback(void)
         //#############################
         
         #ifdef _WDT_LED_INDICATE_
-        PinLedBlue_SetDriveMode(PinLedBlue_DM_STRONG);
+        PinLedBlue_SetDriveMode(PinLedRed_DM_RES_DWN);
         PinLedBlue_Write(~PinLedBlue_Read());
         #endif
         //PinAppState_Write(~PinAppState_Read());
@@ -252,12 +259,16 @@ void wdt2InterruptCallback(void)
             //#############################
 	
 		// Enable Watchdog Counter 2
-    	//CySysWdtEnable(CY_SYS_WDT_COUNTER2_MASK);
+        #ifdef _ENABLE_WATCHDOG_IN_ISR_
+    	CySysWdtEnable(CY_SYS_WDT_COUNTER2_MASK);
+        #endif
         
         // Lock Watchdog to prevent any further change
 	    //CySysWdtLock();    
         
         //******************************************************
+            
+        //restartAdvertisement = TRUE;
     }
 }
 

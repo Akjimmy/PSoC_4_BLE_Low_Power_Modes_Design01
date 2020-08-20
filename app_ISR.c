@@ -33,7 +33,21 @@ CY_ISR(SW2_ISR)
 	
 	SW2_ClearInterrupt();
     
-    PinLedBlue_SetDriveMode(PinLedBlue_DM_STRONG);
-    PinLedBlue_Write(~PinLedBlue_Read());
+    //PinLedBlue_SetDriveMode(PinLedBlue_DM_STRONG);
+    //PinLedBlue_Write(~PinLedBlue_Read());
+    
+    
+    //PinAppState_Write(~PinAppState_Read());
+}
+
+CY_ISR(Pin0_5_ISR)
+{
+    isr_Pin0_5_ClearPending();
+    Pin0_5_ClearInterrupt();
+    if(Pin2_0_Read()==0)
+        Pin2_0_Write(1);
+    else 
+        Pin2_0_Write(0);
+    //Pin2_0_Write(~Pin2_0_Read());
 }
 /* [] END OF FILE */
