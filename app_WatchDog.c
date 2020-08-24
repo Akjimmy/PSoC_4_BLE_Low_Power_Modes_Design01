@@ -160,8 +160,8 @@ void wdt0InterruptCallback(void)
         
         //#############################
         #ifdef _WDT_LED_INDICATE_
-            PinLedRed_SetDriveMode(PinLedRed_DM_RES_DWN);
-            PinLedRed_Write(~PinLedRed_Read());
+        //    PinLedRed_SetDriveMode(PinLedRed_DM_RES_DWN);
+        //    PinLedRed_Write(~PinLedRed_Read());
         #endif
         //#############################
         
@@ -195,7 +195,7 @@ void wdt0InterruptCallback(void)
         //******************************************************  
         
         //#############################
-        PinAppState_Write(~PinAppState_Read());
+        //PinAppState_Write(~PinAppState_Read());// test : to trigger an io port raising interrupt
         //#############################
     }
 }
@@ -227,7 +227,7 @@ void wdt2InterruptCallback(void)
         PinLedBlue_SetDriveMode(PinLedRed_DM_RES_DWN);
         PinLedBlue_Write(~PinLedBlue_Read());
         #endif
-        //PinAppState_Write(~PinAppState_Read());
+        ////PinAppState_Write(~PinAppState_Read());
        
         //#############################
         
@@ -268,7 +268,7 @@ void wdt2InterruptCallback(void)
         
         //******************************************************
             
-        //restartAdvertisement = TRUE;
+        restartAdvertisement = TRUE;
     }
 }
 

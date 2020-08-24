@@ -110,7 +110,7 @@ void bleStackEventHandler( uint32 eventCode, void *eventParam )
 				// API from main function ,then Sequential advertising could be started
 				//restartAdvertisement = TRUE;
                  //#ifdef ENABLE_APP_WATCHDIG_INT
-	                //CySysWdtClearInterrupt(CY_SYS_WDT_COUNTER2_INT);
+	                CySysWdtClearInterrupt(CY_SYS_WDT_COUNTER2_INT);
                     CySysWdtEnable(CY_SYS_WDT_COUNTER2_MASK);
                  //#endif
 			}
@@ -127,10 +127,10 @@ void bleStackEventHandler( uint32 eventCode, void *eventParam )
 			/* Set restartAdvertisement flag to allow calling Advertisement 
 			* API from main function */
 			restartAdvertisement = TRUE;
-            //#ifdef ENABLE_APP_WATCHDIG_INT
-	        //CySysWdtClearInterrupt(CY_SYS_WDT_COUNTER0_INT);
-            //CySysWdtEnable(CY_SYS_WDT_COUNTER0_MASK);
-            //#endif
+            #ifdef ENABLE_APP_WATCHDIG_INT
+	        CySysWdtClearInterrupt(CY_SYS_WDT_COUNTER0_INT);
+            CySysWdtEnable(CY_SYS_WDT_COUNTER0_MASK);
+            #endif
 			break;
 		/**********************************************************
         *                       GATT Events

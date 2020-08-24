@@ -41,8 +41,10 @@ void wdt2InterruptCallback(void);
 // 'ENABLE_APP_WATCHDIG_INT' pre-processor directive enables the watchdog to raise an interrupt    
 //To disable, comment the following #define.
 #define ENABLE_APP_WATCHDIG_INT  //
-#define _ENABLE_WATCHDOG_IN_ISR_
-#define __TEST_WATCHDOG__
+
+//#define _ENABLE_WATCHDOG_IN_ISR_  // re-enable watchdog in wtachdog ISR
+
+#define __TEST_WATCHDOG__ // use test for() loop
     
 #endif
 /* [] END OF FILE */

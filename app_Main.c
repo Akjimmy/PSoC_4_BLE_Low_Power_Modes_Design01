@@ -104,8 +104,8 @@ int main(void)
     // Initialize Watchdog
     #ifdef ENABLE_APP_WATCHDIG_INT  //#define in app_WatchDog.h
     // WDT0,WDT2 configurate and enable  on the clocks tab of the design wide resources (DWR)
-    // WDT0 : 1sec for wakeup system then disabled
-    // WDT2 : enable after ADV STOP or disconnected. 30sec timeout to wakeup form deepsleep
+    // WDT0 : 0.5sec for wakeup system then disabled
+    // WDT2 : enable after ADV STOP or disconnected. 4sec timeout to wakeup form deepsleep
         
     //uint32 uiWdtMode;
     //uint32 uiWdtClearOnMatchStatus;
@@ -166,7 +166,7 @@ int main(void)
     CySysWdtUnlock();
     
     // Enable Watchdog Counter 0
-	CySysWdtEnable(CY_SYS_WDT_COUNTER0_MASK);
+	//CySysWdtEnable(CY_SYS_WDT_COUNTER0_MASK);
     //CySysWdtEnable(CY_SYS_WDT_COUNTER2_MASK);
     
     #endif
@@ -212,43 +212,16 @@ int main(void)
     // if use below for(;;) Loop to test watchdog,un-remark #define __TEST_WATCHDOG__
     
     #ifdef __TEST_WATCHDOG__
-    for(;;)
-    {
-       // ************************************************
-        
-        //PinAppState_Write(0);//### Jimmy. Obseve the deepsleep state
-        
-        CyGlobalIntDisable;
-            CySysPmDeepSleep(); // Put the chip into deep sleep.
-        CyGlobalIntEnable;// allow pendding interrupt to run ISR
-            
-        //PinAppState_Write(1);//### Jimmy
-        
-        CyDelayUs(WATCHDOG_REG_UPDATE_WAIT_TIME); // pseudo code
-    }
-    #endif
-    //###########################################
-    //************************************************************************    
     
-    /* Place your initialization/startup code here (e.g. MyInst_Start()) */
     CyBle_Start( bleStackEventHandler );// start BLESS
+    CySysWdtEnable(CY_SYS_WDT_COUNTER0_MASK);
     
     for(;;)
-    {
+    {  
+        // ************************************************
+        CyBle_ProcessEvents();   
         
-        /* Place your application code here */
-        CyBle_ProcessEvents();
-        
-        if(restartAdvertisement)
-		{
-			// Reset 'restartAdvertisement' flag
-			restartAdvertisement = FALSE;
-
-			// Start Advertisement and enter Discoverable mode
-			CyBle_GappStartAdvertisement(CYBLE_ADVERTISING_FAST);	
-		}
-        
-        if(deviceConnected == TRUE )
+         if(deviceConnected == TRUE )
 		{
 			/* After the connection, send new connection parameter to the Client device 
 			* to run the BLE communication on desired interval. This affects the data rate 
@@ -265,15 +238,26 @@ int main(void)
 		}
         
         #ifdef ENABLE_LOW_POWER_MODE
-			/* Put system to Deep sleep, including BLESS, and wakeup on interrupt. 
-			* The source of the interrupt can be either BLESS Link Layer in case of 
-			* BLE advertisement and connection or by User Button press during BLE 
-			* disconnection */
+            // Put system to Deep sleep, including BLESS, and wakeup on interrupt. 
+		    // The source of the interrupt can be either BLESS Link Layer in case of 
+		    // BLE advertisement and connection or by User Button press during BLE 
+		    // disconnection
             
-			HandleLowPowerMode(byAppPM);
+            //#####################################################################    
+            //CyGlobalIntDisable;
+            //PinAppState_Write(0);//### Jimmy. Obseve the deepsleep state
+            //    CySysPmDeepSleep(); // Put the chip into deep sleep.
+            //PinAppState_Write(1);//### Jimmy
+            //CyGlobalIntEnable;// allow pendding interrupt to run ISR
+            //PinAppState_Write(1);//### Jimmy
             
-		#endif
-       /*
+            //CyDelayUs(WATCHDOG_REG_UPDATE_WAIT_TIME); // pseudo code
+            //#####################################################################        
+            
+        HandleLowPowerMode(byAppPM);
+        
+        #endif
+        
         if(restartAdvertisement)
 		{
 			// Reset 'restartAdvertisement' flag
@@ -282,9 +266,58 @@ int main(void)
 			// Start Advertisement and enter Discoverable mode
 			CyBle_GappStartAdvertisement(CYBLE_ADVERTISING_FAST);	
 		}
-       */
         
     }
+    #endif
+    //###########################################
+    //************************************************************************    
+    /*
+    // Place your initialization/startup code here (e.g. MyInst_Start())
+    CyBle_Start( bleStackEventHandler );// start BLESS
+    
+    for(;;)
+    {
+        
+        // Place your application code here
+        CyBle_ProcessEvents();
+             
+        
+        if(deviceConnected == TRUE )
+		{
+			// After the connection, send new connection parameter to the Client device 
+			// to run the BLE communication on desired interval. This affects the data rate 
+			// and power consumption. High connection interval will have lower data rate but 
+			// lower power consumption. Low connection interval will have higher data rate at
+			// expense of higher power. This function is called only once per connection.
+			UpdateConnectionParam();
+			
+			// When the Client Characteristic Configuration descriptor (CCCD) is written
+			// by Central device for enabling/disabling notifications, then the same
+			// descriptor value has to be explicitly updated in application so that
+			// it reflects the correct value when the descriptor is read
+			UpdateNotificationCCCD();
+		}
+        
+        #ifdef ENABLE_LOW_POWER_MODE
+			// Put system to Deep sleep, including BLESS, and wakeup on interrupt. 
+			// The source of the interrupt can be either BLESS Link Layer in case of 
+			// BLE advertisement and connection or by User Button press during BLE 
+			// disconnection
+            
+			HandleLowPowerMode(byAppPM);
+            
+		#endif
+       
+        if(restartAdvertisement)
+		{
+			// Reset 'restartAdvertisement' flag
+			restartAdvertisement = FALSE;
+
+			// Start Advertisement and enter Discoverable mode
+			CyBle_GappStartAdvertisement(CYBLE_ADVERTISING_FAST);	
+		}
+    }
+    */
 }
 #endif            
 /* [] END OF FILE */
