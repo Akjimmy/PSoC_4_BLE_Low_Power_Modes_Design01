@@ -16,7 +16,7 @@
     
 CY_ISR_PROTO(ISR_UART1);
 
-uint8 _EndTxFlag;
+extern volatile uint8 _EndTxFlag;
 
 #endif
 /* [] END OF FILE */

@@ -12,6 +12,8 @@
 
 #include "app_Main.h"
 
+volatile uint8 _EndTxFlag;
+
 CY_ISR(ISR_UART1)
 {
     uint32 uChar;

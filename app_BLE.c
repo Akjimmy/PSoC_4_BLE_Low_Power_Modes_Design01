@@ -249,7 +249,7 @@ void UpdateConnectionParam(void)
         #ifdef PRINT_MESSAGE_LOG 
             _EndTxFlag=0;// UART_1 ISR set _EndFlag to 1 whne Tx Done
             UART_1_UartPutString("PERIPHERAL connected");
-            while(UART_1_SpiUartGetTxBufferSize());//still fail !!!loss character .transmit buffer=0,may be FIFI not empty,
+            // ### while(UART_1_SpiUartGetTxBufferSize());//still fail !!!loss character .transmit buffer=0,may be FIFI not empty,
             while(!_EndTxFlag);//ok     
         #endif
        

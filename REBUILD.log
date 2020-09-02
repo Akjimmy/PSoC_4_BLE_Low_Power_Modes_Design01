@@ -1,4 +1,4 @@
---------------- Rebuild Started: 09/02/2020 16:20:15 Project: Design01, Configuration: ARM GCC 5.4-2016-q2-update Debug ---------------
+--------------- Rebuild Started: 09/02/2020 16:51:25 Project: Design01, Configuration: ARM GCC 5.4-2016-q2-update Debug ---------------
 Deleting file ".\CortexM0\ARM_GCC_541\Debug\app_Main.o"
 Deleting file ".\CortexM0\ARM_GCC_541\Debug\app_BLE.o"
 Deleting file ".\CortexM0\ARM_GCC_541\Debug\app_ISR.o"
@@ -93,7 +93,7 @@ arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I. -IGenerated_Source\PSoC4 -Wa,-
 arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Debug/app_WatchDog.lst -g -D DEBUG -Wall -ffunction-sections -ffat-lto-objects -O0 -c app_WatchDog.c -o .\CortexM0\ARM_GCC_541\Debug\app_WatchDog.o
 arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Debug/app_ISR_UART1.lst -g -D DEBUG -Wall -ffunction-sections -ffat-lto-objects -O0 -c app_ISR_UART1.c -o .\CortexM0\ARM_GCC_541\Debug\app_ISR_UART1.o
 app_ISR_UART1.c: In function 'ISR_UART1':
-app_ISR_UART1.c:17:12: warning: variable 'uChar' set but not used [-Wunused-but-set-variable]
+app_ISR_UART1.c:19:12: warning: variable 'uChar' set but not used [-Wunused-but-set-variable]
      uint32 uChar;
             ^
 arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Debug/cyfitter_cfg.lst -g -D DEBUG -Wall -ffunction-sections -ffat-lto-objects -O0 -c Generated_Source\PSoC4\cyfitter_cfg.c -o .\CortexM0\ARM_GCC_541\Debug\cyfitter_cfg.o
@@ -162,4 +162,4 @@ Checksum calculated and stored in ELF section .cymeta
 cyelftool.exe -S E:\Day041_PSoC_4_BLE_Low_Power_Modes-20200709\PSoC_4_BLE_LowPowerModes\Design01.cydsn\CortexM0\ARM_GCC_541\Debug\Design01.elf
 Flash used: 89320 of 262144 bytes (34.1%).
 SRAM used: 11968 of 32768 bytes (36.5%). Stack: 2048 bytes. Heap: 128 bytes.
---------------- Rebuild Succeeded: 09/02/2020 16:20:40 ---------------
+--------------- Rebuild Succeeded: 09/02/2020 16:51:56 ---------------
