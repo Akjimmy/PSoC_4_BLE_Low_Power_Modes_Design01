@@ -21,7 +21,9 @@
       <Data key="5fe22be6-a78b-4939-ad44-8e00c9f7ecd4" value="SW2" />
       <Data key="7ca9760e-6931-4b43-a74b-782f631c6518/5382e105-1382-4a2e-b9f4-3bb2feba71e0" value="SCB_2_sda" />
       <Data key="7ca9760e-6931-4b43-a74b-782f631c6518/22863ebe-a37b-476f-b252-6e49a8c00b12" value="SCB_2_scl" />
-      <Data key="8d318d8b-cf7b-4b6b-b02c-ab1c5c49d0ba" value="Pin2_5" />
+      <Data key="8d318d8b-cf7b-4b6b-b02c-ab1c5c49d0ba" value="Pin0_5" />
+      <Data key="43ec2fa1-bf22-4b71-9477-b6ca7b97f0b0/23b8206d-1c77-4e61-be4a-b4037d5de5fc" value="UART_1_tx" />
+      <Data key="43ec2fa1-bf22-4b71-9477-b6ca7b97f0b0/78e33e5d-45ea-4b75-88d5-73274e8a7ce4" value="UART_1_rx" />
       <Data key="3899b5dc-effb-43d8-8853-66d82e684bc9" value="PinLedBlue" />
       <Data key="8487fb09-5b9d-4ced-ba2e-f77c9d9c2b63" value="SW3" />
       <Data key="af4a956a-e0bb-4ff4-9acb-29bcaca982c6" value="PinAppState" />
@@ -3629,6 +3631,16 @@
         <Data key="Port Format" value="0,5" />
       </Group>
     </Group>
+    <Group key="43ec2fa1-bf22-4b71-9477-b6ca7b97f0b0/23b8206d-1c77-4e61-be4a-b4037d5de5fc">
+      <Group key="0">
+        <Data key="Port Format" value="3,5" />
+      </Group>
+    </Group>
+    <Group key="43ec2fa1-bf22-4b71-9477-b6ca7b97f0b0/78e33e5d-45ea-4b75-88d5-73274e8a7ce4">
+      <Group key="0">
+        <Data key="Port Format" value="3,4" />
+      </Group>
+    </Group>
     <Group key="3899b5dc-effb-43d8-8853-66d82e684bc9">
       <Group key="0">
         <Data key="Port Format" value="3,7" />
@@ -3675,7 +3687,7 @@
     <Data key="CYDEV_CONFIG_UNUSED_IO" value="Disallowed" />
     <Data key="CYDEV_CONFIGURATION_MODE" value="COMPRESSED" />
     <Data key="CYDEV_DEBUG_PROTECT" value="OPEN" />
-    <Data key="CYDEV_DEBUGGING_DPS" value="Disable" />
+    <Data key="CYDEV_DEBUGGING_DPS" value="SWD" />
     <Data key="CYDEV_HEAP_SIZE" value="0x80" />
     <Data key="CYDEV_STACK_SIZE" value="0x0800" />
     <Data key="CYDEV_TEMPERATURE" value="-40C - 85C" />

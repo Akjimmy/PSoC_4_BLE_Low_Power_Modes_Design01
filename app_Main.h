@@ -20,10 +20,12 @@
 #include "app_BLE.h"
 #include "app_ISR.h"
 #include "app_HandleLowPower.h"
-#include "app_WatchDog.h"    
+#include "app_WatchDog.h"
+#include "app_UART1.h"
     
 /*************************Pre-processor directives****************************/
-    
+
+    #define     PRINT_MESSAGE_LOG
      
 /****************************************************************************/      
    

@@ -119,6 +119,7 @@ void bleStackEventHandler( uint32 eventCode, void *eventParam )
         /* Add additional events as required */    
         case CYBLE_EVT_GAP_DEVICE_CONNECTED: 					
 		    /* This event is received when device is connected over GAP layer */
+            
 		    break;
 			
         case CYBLE_EVT_GAP_DEVICE_DISCONNECTED:
@@ -243,7 +244,16 @@ void UpdateConnectionParam(void)
 		
 		/* Send Connection Update request with set Parameter */
 		CyBle_L2capLeConnectionParamUpdateRequest(cyBle_connHandle.bdHandle, &ConnectionParam);
-	}
+
+        
+        #ifdef PRINT_MESSAGE_LOG 
+            _EndTxFlag=0;// UART_1 ISR set _EndFlag to 1 whne Tx Done
+            UART_1_UartPutString("PERIPHERAL connected");
+            while(UART_1_SpiUartGetTxBufferSize());//still fail !!!loss character .transmit buffer=0,may be FIFI not empty,
+            while(!_EndTxFlag);//ok     
+        #endif
+       
+    }
 }
 /*******************************************************************************
 * Function Name: SendDataOverLPMselNotification

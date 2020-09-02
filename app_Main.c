@@ -87,9 +87,10 @@ int main_test(void)
         
     }
 }
+#endif
 
-#else
-//*****************************************
+#ifndef _TEST_MAIN_
+// *****************************************
 int main(void)
 {
     //*****************************************
@@ -208,6 +209,11 @@ int main(void)
 	isr_SW2_StartEx(SW2_ISR);//* Start the Button ISR to allow wakeup from low power mode sleep
     isr_Pin0_5_StartEx(Pin0_5_ISR);
     
+    UART_1_SpiUartClearRxBuffer();
+    UART_1_SpiUartClearTxBuffer();
+    UART_1_SetCustomInterruptHandler(ISR_UART1);
+    UART_1_Start();
+    
     //###########################################
     // if use below for(;;) Loop to test watchdog,un-remark #define __TEST_WATCHDOG__
     
@@ -215,7 +221,7 @@ int main(void)
     
     CyBle_Start( bleStackEventHandler );// start BLESS
     CySysWdtEnable(CY_SYS_WDT_COUNTER0_MASK);
-    
+            
     for(;;)
     {  
         // ************************************************
