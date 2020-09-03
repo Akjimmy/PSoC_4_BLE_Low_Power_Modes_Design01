@@ -840,8 +840,8 @@
 <dep name=".\app_BLE.h" />
 <dep name=".\app_HandleLowPower.h" />
 <dep name=".\app_ISR.h" />
+<dep name=".\app_ISR_UART1.h" />
 <dep name=".\app_Main.h" />
-<dep name=".\app_UART1.h" />
 <dep name=".\app_WatchDog.h" />
 </file>
 <file name=".\Generated_Source\PSoC4\cmsis_armcc.h" />
@@ -855,8 +855,8 @@
 <file name=".\app_BLE.h" />
 <file name=".\app_HandleLowPower.h" />
 <file name=".\app_ISR.h" />
+<file name=".\app_ISR_UART1.h" />
 <file name=".\app_Main.h" />
-<file name=".\app_UART1.h" />
 <file name=".\app_WatchDog.h" />
 <file name=".\CortexM0\ARM_GCC_541\Debug\app_HandleLowPower.o">
 <dep name=".\Generated_Source\PSoC4\cmsis_armcc.h" />
@@ -929,8 +929,8 @@
 <dep name=".\app_HandleLowPower.c" />
 <dep name=".\app_HandleLowPower.h" />
 <dep name=".\app_ISR.h" />
+<dep name=".\app_ISR_UART1.h" />
 <dep name=".\app_Main.h" />
-<dep name=".\app_UART1.h" />
 <dep name=".\app_WatchDog.h" />
 </file>
 <file name=".\app_HandleLowPower.c" />
@@ -1005,8 +1005,8 @@
 <dep name=".\app_HandleLowPower.h" />
 <dep name=".\app_ISR.c" />
 <dep name=".\app_ISR.h" />
+<dep name=".\app_ISR_UART1.h" />
 <dep name=".\app_Main.h" />
-<dep name=".\app_UART1.h" />
 <dep name=".\app_WatchDog.h" />
 </file>
 <file name=".\app_ISR.c" />
@@ -1081,8 +1081,8 @@
 <dep name=".\app_HandleLowPower.h" />
 <dep name=".\app_ISR.h" />
 <dep name=".\app_ISR_UART1.c" />
+<dep name=".\app_ISR_UART1.h" />
 <dep name=".\app_Main.h" />
-<dep name=".\app_UART1.h" />
 <dep name=".\app_WatchDog.h" />
 </file>
 <file name=".\app_ISR_UART1.c" />
@@ -1156,9 +1156,9 @@
 <dep name=".\app_BLE.h" />
 <dep name=".\app_HandleLowPower.h" />
 <dep name=".\app_ISR.h" />
+<dep name=".\app_ISR_UART1.h" />
 <dep name=".\app_Main.c" />
 <dep name=".\app_Main.h" />
-<dep name=".\app_UART1.h" />
 <dep name=".\app_WatchDog.h" />
 </file>
 <file name=".\app_Main.c" />
@@ -1232,8 +1232,8 @@
 <dep name=".\app_BLE.h" />
 <dep name=".\app_HandleLowPower.h" />
 <dep name=".\app_ISR.h" />
+<dep name=".\app_ISR_UART1.h" />
 <dep name=".\app_Main.h" />
-<dep name=".\app_UART1.h" />
 <dep name=".\app_WatchDog.c" />
 <dep name=".\app_WatchDog.h" />
 </file>
@@ -1246,6 +1246,7 @@
 <file name=".\Generated_Source\PSoC4\CyBootAsmGnu.s" />
 <file name=".\Generated_Source\PSoC4\cydevicegnu_trm.inc" />
 <file name=".\Generated_Source\PSoC4\cyfittergnu.inc" />
+<file name=".\app_UART1.h" />
 <file name=".\Generated_Source\PSoC4\BLE_1_bas.h" />
 <file name=".\Generated_Source\PSoC4\BLE_1_dis.h" />
 <file name=".\Generated_Source\PSoC4\BLE_1_hids.h" />
@@ -2964,7 +2965,7 @@
 <v>C:\Program Files\Cypress\PSoC Creator\4.2\PSoC Creator\warp\lib\common\stdlogic\mod_genv.vif</v>
 <v>C:\Program Files\Cypress\PSoC Creator\4.2\PSoC Creator\warp\lib\common\stdlogic\rtlpkg.vif</v>
 </warp_dep>
-<deps_time v="132435103059795585" />
+<deps_time v="132435949080813669" />
 <top_block v="TopDesign" />
 <last_generation v="7" />
 <pdl_path v="" />
@@ -2974,7 +2975,7 @@
 <dataGuid v="769d31ea-68b1-4f0c-b90a-7c10a43ee563">
 <CyGuid_769d31ea-68b1-4f0c-b90a-7c10a43ee563 type_name="CyDesigner.Common.ProjMgmt.Model.CyLinkCustomData" version="1">
 <link_deps_times>
-<name_val_pair name="c9323d49-d323-40b8-9b59-cc008d68a989@Debug@CortexM0" v="132435103159661297" />
+<name_val_pair name="c9323d49-d323-40b8-9b59-cc008d68a989@Debug@CortexM0" v="132435949175329075" />
 </link_deps_times>
 </CyGuid_769d31ea-68b1-4f0c-b90a-7c10a43ee563>
 </dataGuid>

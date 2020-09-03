@@ -21,7 +21,8 @@ CY_ISR(ISR_UART1)
     { 
         while (UART_1_SpiUartGetRxBufferSize() != 0u) 
         {
-             uChar= UART_1_UartGetChar();   
+             uChar= UART_1_UartGetChar();
+            //UART_1_UartPutChar(uChar);
         }
         
         UART_1_ClearRxInterruptSource(UART_1_INTR_RX_NOT_EMPTY);

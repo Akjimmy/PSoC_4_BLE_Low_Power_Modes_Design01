@@ -31,17 +31,28 @@ void HandleLowPowerMode(uint8 byLpm)
 		/* Local variable to store the status of BLESS Hardware block */
 		CYBLE_LP_MODE_T sleepMode;
 		CYBLE_BLESS_STATE_T blessState;
-        //uint8 interruptStatus;
+        uint8 interruptStatus;
         
         if (byLpm == DEEPSLEEP)
         {
+            // cypress suggested method
+            // Wait until UART completes transfer data.
+            while ((UART_1_SpiUartGetTxBufferSize() + UART_1_GET_TX_FIFO_SR_VALID) != 0u);
+            UART_1_ClearTxInterruptSource(UART_1_INTR_TX_UART_DONE);//needed ??? 
+            
             /* Leave chip in Deep Sleep mode */
     		/* Put BLESS into Deep Sleep and check the return status */
     		sleepMode = CyBle_EnterLPM(CYBLE_BLESS_DEEPSLEEP);
     		
     		/* Disable global interrupt to prevent changes from any other interrupt ISR */
-    		CyGlobalIntDisable;
-    	    //interruptStatus=CyEnterCriticalSection();
+    		//CyGlobalIntDisable;
+            // ### Enter critical section to force all enabled and active interrupts
+            // ### become pending. It is required to not miss any activity that should
+            // ### wake up device before CySysPmDeepSleep() is called.
+    	    interruptStatus=CyEnterCriticalSection();
+            
+            
+            
             
     		/* Check the Status of BLESS */
     		blessState = CyBle_GetBleSsState();
@@ -105,8 +116,8 @@ void HandleLowPowerMode(uint8 byLpm)
     		}
     		
     		/* Re-enable global interrupt mask after wakeup */
-    		CyGlobalIntEnable;
-            //CyExitCriticalSection(interruptStatus);
+    		//CyGlobalIntEnable;
+            CyExitCriticalSection(interruptStatus);
         }
         
         else if (byLpm == SLEEP)

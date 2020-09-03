@@ -247,10 +247,15 @@ void UpdateConnectionParam(void)
 
         
         #ifdef PRINT_MESSAGE_LOG 
-            _EndTxFlag=0;// UART_1 ISR set _EndFlag to 1 whne Tx Done
+            _EndTxFlag=0;// UART_1 ISR set _EndFlag to 1 when Tx Done
             UART_1_UartPutString("PERIPHERAL connected");
             // ### while(UART_1_SpiUartGetTxBufferSize());//still fail !!!loss character .transmit buffer=0,may be FIFI not empty,
-            while(!_EndTxFlag);//ok     
+            //while(!_EndTxFlag);//ok 
+            
+            // cypress suggested method
+            // Wait until UART completes transfer data.
+            //while ((UART_1_SpiUartGetTxBufferSize() + UART_1_GET_TX_FIFO_SR_VALID) != 0u); 
+            // ### place these code in app_HandleLowPower.c
         #endif
        
     }

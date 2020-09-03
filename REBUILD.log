@@ -1,4 +1,4 @@
---------------- Rebuild Started: 09/02/2020 16:51:25 Project: Design01, Configuration: ARM GCC 5.4-2016-q2-update Debug ---------------
+--------------- Rebuild Started: 09/03/2020 16:21:39 Project: Design01, Configuration: ARM GCC 5.4-2016-q2-update Debug ---------------
 Deleting file ".\CortexM0\ARM_GCC_541\Debug\app_Main.o"
 Deleting file ".\CortexM0\ARM_GCC_541\Debug\app_BLE.o"
 Deleting file ".\CortexM0\ARM_GCC_541\Debug\app_ISR.o"
@@ -160,6 +160,6 @@ No ELF section .cychecksum found, creating one
 Application checksum calculated and stored in ELF section .cychecksum
 Checksum calculated and stored in ELF section .cymeta
 cyelftool.exe -S E:\Day041_PSoC_4_BLE_Low_Power_Modes-20200709\PSoC_4_BLE_LowPowerModes\Design01.cydsn\CortexM0\ARM_GCC_541\Debug\Design01.elf
-Flash used: 89320 of 262144 bytes (34.1%).
-SRAM used: 11968 of 32768 bytes (36.5%). Stack: 2048 bytes. Heap: 128 bytes.
---------------- Rebuild Succeeded: 09/02/2020 16:51:56 ---------------
+Flash used: 89456 of 262144 bytes (34.1%).
+SRAM used: 12032 of 32768 bytes (36.7%). Stack: 2048 bytes. Heap: 128 bytes.
+--------------- Rebuild Succeeded: 09/03/2020 16:21:57 ---------------
